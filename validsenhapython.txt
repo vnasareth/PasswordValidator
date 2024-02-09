@@ -1,0 +1,100 @@
+validsenhapython
+
+```python
+from passlib.hash import pbkdf2_sha256
+```
+Importa a função `pbkdf2_sha256` do módulo `passlib.hash`. Esta função é usada para criar um hash seguro de uma senha.
+
+```python
+# Definindo as variáveis
+TAMANHO_MINIMO = 9
+CARACTERES_ESPECIAIS = "!@#$%^&*()-+"
+```
+Define duas constantes: uma para o tamanho mínimo da senha e outra para os caracteres especiais aceitáveis.
+
+```python
+# Função para verificar se a senha é válida
+def validar_senha(senha):
+```
+Declara uma função chamada `validar_senha` que leva `senha` como argumento.
+
+```python
+  # Verificando o tamanho da senha
+  if len(senha) < TAMANHO_MINIMO:
+    return {"válido": False, "motivo": "Senha muito curta"}
+```
+Verifica se o comprimento da senha é menor que o tamanho mínimo definido. Se for, retorna  indicando que a senha é inválida e o motivo.
+
+```python
+  # Verificando se a senha possui caracteres repetidos
+  if len(set(senha)) < len(senha):
+    return {"válido": False, "motivo": "Senha possui caracteres repetidos"}
+```
+Converte a senha para um conjunto para remover caracteres duplicados e compara seu comprimento com o da senha original. Se forem diferentes, a senha contém caracteres repetidos e é considerada inválida.
+
+```python
+  # Verificando se a senha possui todos os tipos de caracteres
+  tem_digito = False
+  tem_minuscula = False
+  tem_maiuscula = False
+  tem_especial = False
+  for caractere in senha:
+    if caractere.isdigit():
+      tem_digito = True
+    elif caractere.islower():
+      tem_minuscula = True
+    elif caractere.isupper():
+      tem_maiuscula = True
+    elif caractere in CARACTERES_ESPECIAIS:
+      tem_especial = True
+```
+Itera sobre cada caractere da senha e verifica se contém pelo menos um dígito, uma letra minúscula, uma maiúscula e um caractere especial.
+
+```python
+  if not tem_digito or not tem_minuscula or not tem_maiuscula or not tem_especial:
+    return {"válido": False, "motivo": "Senha precisa de dígito, minúscula, maiúscula e caractere especial"}
+```
+Se qualquer um dos tipos de caracteres necessários estiver ausente, a função retorna que a senha é inválida e fornece o motivo.
+
+```python
+  # A senha é válida
+  return {"válido": True,"motivo": "Senha valida"}
+```
+Se todas as verificações anteriores passarem, a senha é considerada válida.
+
+```python
+# Função para verificar se a senha contém caracteres inválidos
+def possui_caracteres_invalidos(senha):
+```
+Define uma função que verifica se a senha contém espaços.
+
+```python
+  for caractere in senha:
+    if caractere.isspace():
+      return True
+  return False
+```
+Itera sobre cada caractere da senha e retorna `True` se qualquer caractere for um espaço em branco. Caso contrário, retorna `False`.
+
+```python
+# Função para gerar um hash da senha
+def gerar_hash_senha(senha):
+```
+Define uma função para criar um hash de uma senha.
+
+```python
+  return pbkdf2_sha256.hash(senha)
+```
+Usa a função `pbkdf2_sha256.hash` para gerar um hash da senha fornecida.
+
+```python
+# Função para verificar se o hash da senha é válido
+def verificar_hash_senha(senha, hash_senha):
+```
+Define uma função para verificar se uma senha corresponde ao hash fornecido.
+
+```python
+  return pbkdf2_sha256.verify(senha, hash_senha)
+```
+Usa a função `pbkdf2_sha256.verify` para verificar se a senha fornecida corresponde ao hash.
+
