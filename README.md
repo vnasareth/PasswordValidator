@@ -13,8 +13,8 @@ Funcionalidades:
 
 Validação de senha via API
 Verificação de caracteres inválidos
-Geração de hash de senha (opcional)
-Verificação de hash de senha (opcional)
+Geração de hash de senha
+Verificação de hash de senha
 Tecnologias:
 
 Frasco
