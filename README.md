@@ -48,6 +48,7 @@ Exemplo de resposta:
 Instalação:
 
 pip install -r requirements.txt
+
 Execução:
 
 python app.py
@@ -56,8 +57,6 @@ Documentação:
 Detalhes da implementação das funções de validação de senha podem ser encontrados no código fonte.
 As funções de geração e verificação de hash de senha são específicas e não são utilizadas na API de validação.
 Observações:
-
-Este projeto é um exemplo básico de validação de senha.
 
 Contribuições:
 
