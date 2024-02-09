@@ -18,7 +18,7 @@ Verificação de hash de senha (opcional)
 Tecnologias:
 
 Frasco
-Pitão
+Python 
 Passlib
 Uso da API:
 
